@@ -1,0 +1,9 @@
+# game data — never commit, copyright and size
+original/
+
+# build outputs — regenerable from tools/assemble.py build
+build/*.BIN
+
+# python
+__pycache__/
+*.pyc
