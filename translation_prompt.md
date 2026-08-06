@@ -32,7 +32,7 @@ this will happen to you. Budget first, then write.
 | File | Tool | Unit of work | Constraint |
 |---|---|---|---|
 | `SCRIPT.BIN` (main script, 44 banks) | `riotscript.py` | a slice of `script_unique.txt` | effectively unconstrained (69% free) **except bank 41 (353 bytes)** |
-| `TACTICS/HEXMAP.BIN` (battle script, 43 chunks) | `riotbattle.py` | **one or more whole chunks of `battle_dump.txt`** | hard 8,192-byte slot per chunk |
+| `TACTICS/HEXMAP.BIN` (battle script, 44 chunks) | `riotbattle.py` | **one or more whole chunks of `battle_dump.txt`** | hard 8,192-byte slot per chunk (chunk 43: see §0.4) |
 
 For the main script, take **40–60 lines of `script_unique.txt` per session**, highest count first;
 the dedupe means each line translated once propagates up to 126 times.
@@ -73,26 +73,31 @@ straight to the geometry, check columns per segment as you write, and spend the 
 
 ### 0.3 Chunk schedule
 
-43 chunks carry dialogue, 42,763 Japanese characters total. **8 chunks are done — 0 and the whole
-of tier E — 3,967 characters; 35 chunks and 38,796 characters remain.** Work in numeric order
-within a tier so character voices stay adjacent, **except** run chunk 43 early as a feasibility
-spike (see §0.4).
+**44** chunks carry dialogue, 43,161 Japanese characters total. **9 chunks are done — 0, 33 and
+the whole of tier E — 4,365 characters; 35 chunks and 38,796 characters remain.** Chunk 43 is
+translated but cannot ship until the slot is widened (§0.4), so it is not counted as done. Work in
+numeric order within a tier so character voices stay adjacent.
+
+**Chunk 33 was invisible until 2026-08-05.** `find_script_bounds` keyed on `{FC51}` alone and
+chunk 33 opens every message with `{FC50}`, so it never reached the dump. The detector now accepts
+either marker (`findings.md` §23). If a chunk count anywhere in this document disagrees with
+`assemble.py status`, trust `status`.
 
 | Tier | Ratio | Chunks | Per session | Sessions |
 |---|---|---|---|---|
-| **A** | < 1.6 | **43**, 5, 16, 32 | 1 | 4 |
+| **A** | < 1.6 | ~~43~~ ⚠️, 5, 16, 32 | 1 | 3 |
 | **B** | 1.6 – 2.5 | ~~0~~ ✅, 7, 8, 19, 30 | 1 | 4 |
 | **C** | 2.5 – 4.0 | 2, 6, 13, 17, 23, 24, 25, 26, 31, 36, 37, 38 | 2 | 6 |
 | **D** | 4.0 – 6.5 | 1, 3, 4, 9, 15, 18, 20, 21, 22, 27, 28, 29, 39, 41, 42 | 3–4 | 5 |
-| **E** | > 6.5 | ~~10, 11, 12, 14, 34, 35, 40~~ ✅ | all 7 | ~~1~~ 0 |
+| **E** | > 6.5 | ~~10, 11, 12, 14, 34, 35, 40, 33~~ ✅ | all 7 | ~~1~~ 0 |
 
-**19 sessions remaining.** Tier E went in a single session as scheduled and confirmed the batching
+**18 sessions remaining.** Tier E went in a single session as scheduled and confirmed the batching
 assumption: at ratios above 6.5, seven chunks is a comfortable session, and the limiting factor is
 how many distinct character voices you have to hold at once, not volume. Per-chunk figures:
 
 | Chunk | JP chars | Headroom | Ratio | | Chunk | JP chars | Headroom | Ratio |
 |---|---|---|---|---|---|---|---|---|
-| 43 | 2357 | 1071 | 1.23 | | 25 | 1039 | 5161 | 3.48 |
+| **43** | **2357** | **1071** | **1.23** ⚠️ | | 25 | 1039 | 5161 | 3.48 |
 | 5 | 2132 | 2241 | 1.53 | | 36 | 986 | 5765 | 3.92 |
 | 32 | 2116 | 2593 | 1.61 | | 37 | 985 | 5299 | 3.69 |
 | 16 | 2100 | 2467 | 1.59 | | 3 | 870 | 5617 | 4.23 |
@@ -113,21 +118,29 @@ how many distinct character voices you have to hold at once, not volume. Per-chu
 | **10** | **463** | **6847** | **8.39** ✅ | | **12** | **453** | **6783** | **8.49** ✅ |
 | **14** | **418** | **6941** | **9.30** ✅ | | **34** | **313** | **7257** | **12.59** ✅ |
 | **11** | **295** | **7273** | **13.33** ✅ | | **35** | **59** | **7779** | **66.92** ✅ |
-| **40** | **52** | **8001** | **77.92** ✅ | | | | | |
+| **40** | **52** | **8001** | **77.92** ✅ | | **33** | **398** | **6779** | **9.52** ✅ |
 
 Shipped sizes, for calibration: chunk 10 — 2,159 / 8,192. 11 — 1,567. 12 — 2,405. 14 — 2,203.
-34 — 1,591. 35 — 557. 40 — 313.
+34 — 1,591. 35 — 557. 40 — 313. 33 — 2,151.
 
-### 0.4 Chunk 43 is a known problem
+### 0.4 Chunk 43 — spike done, verdict: infeasible in 8,192 bytes
 
-2,357 Japanese characters into 1,071 bytes of headroom is a ratio of **1.23**. No amount of terse
-English reaches that. Attempt it early and report which of these is needed, rather than discovering
-it at session 20:
+The spike ran on 2026-08-05. The answer is **repoint**, and the abridgement option is off the table.
 
-- repoint the script out of the fixed 8,192-byte slot (the unit table at `+0x27000` is read at a
-  hardcoded offset and must not move — see `findings.md` §5);
-- borrow space from a neighbouring chunk;
-- or accept an abridged rendering of that map's dialogue, with the cuts documented.
+- A faithful translation is **11,181 bytes** — 2,989 over. Every other rule passes.
+- An abridgement that already deletes 13 sentences reaches only **8,941 bytes**, still 749 over,
+  at a ratio of 1.41. Closing that gap means deleting speaker turns, which §2.1 forbids.
+- Both files are parked in `pending/`, which deliberately does not match `chunk_NNN.txt`, so the
+  patch stays buildable and chapter 43 falls through to Japanese.
+
+The engine fix is specified in **`pending/slot-extension.md`** and traced in `findings.md` §23:
+chunk 43's slot moves down to `chunk+0x23000`, giving 16,384 bytes. It needs eleven patched words
+in `KOUSEI.EXE` — a per-map conditional on the read, **and a relocation of the 8,192-byte RAM
+script buffer at `0x80154F40`**, which has only 12 bytes of clearance above it. Do not apply the
+disc-side change on its own.
+
+Once the slot exists, `git mv pending/chunk_043.txt tl/battle/chunk_043.txt` and teach
+`riotbattle.py` the per-chunk `SCRIPT_LO`/`SCRIPT_SLOT`.
 
 ### 0.5 Where the output goes — the patch must be buildable at any moment
 

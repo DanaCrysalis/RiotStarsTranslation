@@ -62,7 +62,7 @@ def find_script_bounds(chunk):
     if len(chunk) < SCRIPT_HI:
         return None
     slot = chunk[SCRIPT_LO:SCRIPT_HI]
-    if b'\xfc\x51' not in slot:
+    if b'\xfc\x51' not in slot and b'\xfc\x50' not in slot:
         return None
     k = len(slot)
     while k > 0 and slot[k-1] == 0:

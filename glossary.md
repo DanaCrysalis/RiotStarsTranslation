@@ -230,3 +230,107 @@ Do not treat these as decisions. Promote on first use.
     variant speeches. Probably a source typo; it will matter to whoever dedupes chunk 0.
 11. **The ch.35 mansion speaker is unnamed.** Portrait 8, confident, two lines, no name anywhere in
     the chunk. If a later chunk names him, re-check his register.
+
+---
+
+## 11. Added by the chunk 43 spike (tier A feasibility, chunk 43)
+
+Rendered in `pending/chunk_043.txt`. Chunk 43 is the final chapter: the Helfer confrontation in
+the sky-fortress control room, Rimul's revenge for Guilford, the self-destruct, and the airship
+epilogue.
+
+### 11.1 People
+
+| Japanese | English | Note |
+|---|---|---|
+| ヘルファー | Helfer | final boss, commander of the floating island. Alt *Hellfar*; Helfer chosen to match the game's German/European naming (Bauer, Carline). 6 chars, clears the ≤ 16 unit cap |
+| ティミー | Timmy | **promoted from §9 PROVISIONAL** — rendered in ch.43, where she is addressed by name and told to flee |
+
+### 11.2 Places, factions, ranks
+
+| Japanese | English | Note |
+|---|---|---|
+| フェリスランド | Ferisland | the land the island's lasers threaten. Alt *Felisland*, *Ferrisland*. Appears nowhere else in either dump — see FLAGS |
+| ハイランド / 古代ハイランド | Highland / ancient Highland | the vanished civilisation that built the fortress |
+| 浮遊島 | the floating island | |
+| 空中要塞 | sky fortress | keep distinct from 要塞 → fortress |
+| 指令官 | Commander | the source spells it 指令官, not 司令官 — treated as the same word |
+| ４号機 | Ｕｎｉｔ　４ | the machine the 9th Army destroyed; digit stays full-width |
+
+### 11.3 Items and mechanics
+
+| Japanese | English | Note |
+|---|---|---|
+| 自爆装置 | ｓｅｌｆ‐ｄｅｓｔｒｕｃｔ | uses ‐ (U+2010); 13 columns |
+| 解除装置 | the switch | "shutoff device" is 15 columns and will not share a line — **switch** is the fixed short form |
+| レーザー兵器 | lasers / laser weapons | |
+| コントロール室 | control room | |
+
+### 11.4 Classes
+
+| Japanese | English | Note |
+|---|---|---|
+| 魔導師 | wizard | Guilford. Distinct from 魔術師 → mage and 女魔術師 → sorceress |
+
+### 11.5 Tics and interjections
+
+| Japanese | English | Note |
+|---|---|---|
+| くっ / クッ | Ｔｃｈ | vexation. **Distinct** from ムムッ / ふっ / フンッ → Ｈｍｐｈ and from ほう → Ｈｏｈ |
+| グワアアアァァ | Ｇｗａａａａａｈ | death cry; extends the existing ぐわっ → Ｇｗａｈ |
+| フハハハ… | Ｆｕｈａｈａｈａ… | Helfer's laugh; length tracks the source's kana count |
+| 雑草ども | weeds | Helfer's contemptuous term for the 9th Army; recurs, keep it |
+| 命の恩人 | your rescuer | 9 columns; "the man who saved you" never fits |
+
+### 11.6 Register
+
+| Who | Register |
+|---|---|
+| Helfer | grandiose and archaic, no contractions; calls the party **weeds** and **rabble**. His register is what makes him expensive to translate — see FLAGS |
+
+---
+
+## 12. Added by chunk 33 (the sanctuary / class-change trial)
+
+Rendered in `tl/battle/chunk_033.txt`. Chunk 33 was missing from `battle_dump.txt` until the
+dumper's `{FC51}`-only detector was fixed (`findings.md` §23) — it is the sanctuary map: an
+unnamed sorceress tests the party's mage and grants the “Ｂｏｏｋ　ｏｆ　Ｋｎｏｗｌｅｄｇｅ”.
+
+### 12.1 Places and items
+
+| Japanese | English | Note |
+|---|---|---|
+| 聖堂 | sanctuary | 9 columns. Not “cathedral” / “sacred hall” — both are too wide to share a line and the place is a mages' preserve, not a church |
+| 『知識の書』 | “Ｂｏｏｋ　ｏｆ　Ｋｎｏｗｌｅｄｇｅ” | `『…』` → `“…”`; 20 columns with the quotes, so it never shares a line with anything but a short article |
+| 魔道の力 | the power of magic | 魔道 here is the art, not a person — do not confuse with 魔導師 |
+
+### 12.2 Classes
+
+| Japanese | English | Note |
+|---|---|---|
+| ウィザード | Ｗｉｚａｒｄ | **capitalised** — a named class, like フリーナイト → Free Knight. The advanced class a 魔術師 changes into. ⚠️ collides with 魔導師 → wizard from §11.4 — see §13.12 |
+
+### 12.3 Tics and interjections
+
+| Japanese | English | Note |
+|---|---|---|
+| ふふ | Ｆｕｆｕ | soft, amused feminine chuckle. Transliterated to match フハハハ → Ｆｕｈａｈａｈａ (§11.5). **Distinct** from ムムッ/ふっ → Ｈｍｐｈ and ほう → Ｈｏｈ. Alt `Ｈｅｈ　ｈｅｈ` — see FLAGS |
+
+### 12.4 Register
+
+| Who | Register |
+|---|---|
+| The sanctuary sorceress (ch.33) | poised and imperious, no contractions; `Ｉ　ｓｈａｌｌ`, `Ｖｅｒｙ　ｗｅｌｌ`, `Ｃｏｍｅ　ａｔ　ｍｅ`. Close to Rimul's register but warmer once the party wins — she is a teacher, not an enemy. Unnamed in this chunk |
+| Deployment-restriction boxes (`{=FA1000300030}`) | as §7 tutorial boxes — plain instructional second person, no personality |
+
+---
+
+## 13. Open questions (continued from §10)
+
+12. **`ウィザード` vs `魔導師`.** §11.4 fixed 魔導師 → *wizard* (lowercase, prose, for Guilford);
+    §12.2 fixes ウィザード → *Ｗｉｚａｒｄ* (capitalised, the class). These are very probably the
+    same class written two ways in the source. Neither entry is changed here — per §4.3 that needs
+    an explicit decision. Settle it when the class-name table is fixed (§10.2), and if 魔導師 turns
+    out to be the class, revisit `pending/chunk_043.txt`.
+13. **The ch.33 sorceress is unnamed.** No name anywhere in the chunk. If a later chunk names her,
+    re-check her register.
