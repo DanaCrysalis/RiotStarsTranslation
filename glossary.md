@@ -40,6 +40,10 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | 神父 | priest | the fairy's ring-bearer |
 | 妖精 | fairy | lowercase, common noun; referred to as *she* |
 | 市長 | the mayor | Caucasus (ch.12); also `script_unique` 380 |
+| クレス | Ｃｒｅｓｓ | 少尉 → **Ｓｅｃｏｎｄ　Ｌｉｅｕｔｅｎａｎｔ　Ｃｒｅｓｓ** (18+5 columns, never on one row). Court‐martialled alongside Alfred for the failed expedition (script 1236). Alt *Kress*, *Cres* |
+| アンゼルモ | Ａｎｓｅｌｍｏ | 中尉 → **Ｆｉｒｓｔ　Ｌｉｅｕｔｅｎａｎｔ　Ａｎｓｅｌｍｏ**. **Promoted from §14.6**, which already used this form for his register but never fixed the name. 8 columns |
+| ゼファー・クリッペン | Ｚｅｐｈｙｒ　Ｋｒｉｐｐｅｎ | 帝国の司令官 → Commander of the Empire. `・` has no glyph in §3.1 and becomes `　`. 14 columns. Alt *Zepher*, *Crippen*, *Klippen* |
+| ヘルファー様 | Ｌｏｒｄ　Ｈｅｌｆｅｒ | 様 → **Lord** for a male superior, paralleling 様 → Lady (Rimul §1, Phyllis §14.1). 11 columns. Does not change the §11.1 bare-name entry |
 
 ## 2. Factions, places, ranks
 
@@ -51,6 +55,7 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | 分隊長 | squad captain | promoted from PROVISIONAL. Use **squad captain** where 隊長 is written out (ベアトリス, ch.14), **squad leader** for the bare 分隊長 |
 | 隊長 | captain | how the player character is addressed. `Ｃａｐｔａｉｎ　{FC00}` = 15 columns; `Ｃｏｍｍａｎｄｅｒ` does not fit alongside the insert |
 | 少尉 | Second Lieutenant | 18 columns — will not share a line with a name |
+| 中尉 | First Lieutenant | 17 columns — same rule; put the name on the next row |
 | 宮廷軍 / 宮廷防衛軍 | Royal Army / Royal Defence Force | keep the two distinct |
 | 紅の騎士団 | Crimson Knights | elite imperial unit |
 | 帝国 | the Empire | 帝国軍 → the Empire's men where 24 columns will not take "the Imperial army" |
@@ -72,6 +77,10 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | 援軍 | reinforcements / **aid** | use "aid" only where 24 columns will not take the full word; flag each time |
 | 要塞 | fortress | 8 columns |
 | 旗印 | banner | |
+| ウエストバリー | Ｗｅｓｔｂｕｒｙ | Town taken by the 9th Army. 9 columns. Alt *Westbarry* |
+| 大要塞 | ｇｒｅａｔ　ｆｏｒｔｒｅｓｓ | 14 columns. Keep **distinct** from 要塞 → fortress and 空中要塞 → sky fortress (§11.2) |
+| 作戦会議 | ｗａｒ　ｃｏｕｎｃｉｌ | 11 columns |
+| 穀潰し | ｆｒｅｅｌｏａｄｅｒｓ | Contemptuous — one who eats but does not work. 12 columns. **Distinct** from 雑草ども → weeds (§11.5) and ゴミ → rubbish (§14.4). Recurs in script 1236 |
 | 死罪 | death (as a penalty) | 逃亡は死罪 → `Ｆｌｉｇｈｔ　ｂｅｆｏｒｅ　ｔｈｅ　ｅｎｅｍｙ　ｍｅａｎｓ　ｄｅａｔｈ` |
 
 ## 3. Items and mechanics
@@ -91,6 +100,9 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | 待ち時間（Ｗａｉｔ） | Ｗａｉｔ　ｔｉｍｅ | the parenthetical gloss is redundant in English — drop it |
 | ＨＩＴ | hits | source uses full-width caps for the loanword; English needs no emphasis |
 | ○ボタン / □ボタン | Ｃｉｒｃｌｅ　ｂｕｔｔｏｎ / Ｓｑｕａｒｅ　ｂｕｔｔｏｎ | ○ □ are outside the permitted charset |
+| ×ボタン | **Ｃｒｏｓｓ　ｂｕｔｔｏｎ** | 12 columns. **Decided 2026‐08‐06, see §16.** Shape name, not keycap letter — `Ｘ　ｂｕｔｔｏｎ` would be the only button named by its glyph while ○ and □ are named by shape, and §4.3 forbids restyling those silently |
+| △ボタン | Ｔｒｉａｎｇｌｅ　ｂｕｔｔｏｎ | 15 columns. Fixed now, prospectively, so the fourth button cannot drift |
+| メダル (racetrack) | ｍｅｄａｌ / ｍｅｄａｌｓ | The betting token at the horse track. **Distinct** from ジュエル → Jewel; do not merge |
 
 ## 4. Classes and class descriptions
 
@@ -140,7 +152,7 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | ・・・・！？ | ．．．．！？ | ch.10 and ch.11, 2 occurrences |
 | ムムッ | Ｈｍｐｈ | grunt |
 | ふっ / フンッ | Ｈｍｐｈ | both scoffs collapse to the same English — deliberate |
-| ほう | Ｈｏｈ | impressed grunt; **distinct** from the Ｈｍｐｈ pair. ⚠️ see §10.6 |
+| ほう / ほお | **Ｏｈ** | impressed grunt; **distinct** from the Ｈｍｐｈ pair. Was `Ｈｏｈ`; **§10.6 is now resolved in favour of chunk 0's `Ｏｈ`** — ch.35 line 13 still needs the edit |
 | む | Ｈｍ | shorter, more sceptical grunt (ch.12) |
 | まったく | Ｒｅａｌｌｙ， | exasperation / contempt |
 | ふう | Ｐｈｅｗ， | relief |
@@ -148,6 +160,9 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | はっ (military assent) | Ｓｉｒ | a recruit answering an officer |
 | いいな！！ / わかったなっ！！ | Ｇｏｔ　ｉｔ！！ / Ｇｏｔ　ｔｈａｔ！！ | keep the two distinct, they are different source strings. **Do not** use either for a plain 分かった — that is `Ｒｉｇｈｔ，` |
 | 行くぞ！ | Ｍｏｖｅ　ｏｕｔ！ | |
+| ああ (assent) | Ｙｅａｈ | Casual agreement from a rough speaker. **Distinct** from はっ → Ｓｉｒ (military assent) and from 分かった → `Ｒｉｇｈｔ，` |
+| 何だと？ / なんだと？ | Ｗｈａｔ　ｗａｓ　ｔｈａｔ？ | Incredulous. The kanji and kana spellings are different source strings but take the same English; `何だと！？` keeps its own `！？` |
+| だまれ | Ｓｉｌｅｎｃｅ | An officer cutting a subordinate off. Not "shut up" — the register is command, not brawl |
 
 ## 7. Register per character
 
@@ -213,9 +228,11 @@ Do not treat these as decisions. Promote on first use.
 5. **`ダミーぶきです` padding.** The source pads to 11 columns with trailing `　`; the English is 23
    and drops the padding. If that field turns out to be fixed-width, shorten to
    `Ｄｕｍｍｙ　ｗｐｎ．` / `Ｄｕｍｍｙ　ａｒｍ．`.
-6. **`ほう` may already be rendered in chunk 0.** Rimul says `ほう・・・。` there. `Ｈｏｈ` was
-   chosen for ch.35 without sight of `tl/battle/chunk_000.txt`. **Check chunk 0 and, if it differs,
-   chunk 0's form wins** — revise ch.35 line 13 (`{FCD0}{=00080001…}`) to match.
+6. ~~**`ほう` may already be rendered in chunk 0.**~~ **RESOLVED 2026‐08‐06.** Chunk 0 line 14
+   renders Rimul's `ほう・・・。` as `Ｏｈ．．．．`. Per this entry's own rule chunk 0 wins, so
+   **ほう / ほお → `Ｏｈ`**, and §6's `Ｈｏｈ` entry is superseded. Used as `Ｏｈ` in script 1234.
+   ⚠️ **`tl/battle/chunk_035.txt` line 13 still says `Ｈｏｈ，` and must be changed to `Ｏｈ，`** —
+   not done in this session, which was script‐only. Same width, so no re‐flow is needed.
 7. **Player gender.** Ch.12 renders Shiron's `あんちゃん` as `ｌａｄ`, which assumes a male player
    character. If the name is free-entry with no fixed gender, swap to `ｆｒｉｅｎｄ` — same 18
    columns.
@@ -417,3 +434,76 @@ chunk 7 uses several of them and later chunks will use the rest.
     character. Rendered *Tita* pending an in-game look.
 17. **`オーク` capitalisation.** Resolved to lowercase *orc* for prose (§14.3), but the class-name
     table (§10.2) may need `Ｏｒｃ`. Settle both at once.
+
+---
+
+## 15. Added by script batch 002 (the war-council pool; the horse-race tutorial)
+
+Rendered in `tl/script/batch_002.tsv` — `script_dump.txt` lines 1234 and 8604, the two
+messages that blocked `assemble.py build` (`FLAGS.md` §A1–A2, now resolved).
+
+### 15.1 Horse racing
+
+The betting parlour tutorial. The four bracketed display headings are quoted in the source
+with `「…」`, which becomes `“…”` per the `『…』` precedent in §3.
+
+| Japanese | English | Note |
+|---|---|---|
+| 脚質 | “ｒｕｎｎｉｎｇ　ｓｔｙｌｅ” | 13 columns bare, 15 with the quotes — it will not share a row with much. The real racing term; not “leg quality” or “running type” |
+| 前走までの順位 | “ｐａｓｔ　ｐｌａｃｉｎｇｓ” | 14 bare. The five-digit strip of finishing positions. **Placings**, British, consistent with the defence/armour spelling policy |
+| 今回の調子 | “ｆｏｒｍ　ｔｏｄａｙ” | 12 bare. **form** is the racing word for condition |
+| 調子 (bare, of a horse) | ｆｏｒｍ | 4 columns |
+| 逃げる | ｌｉｋｅｓ　ｔｏ　ｌｅａｄ | The front-runner style. Not “runs away” |
+| 追い込む | ｌｉｋｅｓ　ｔｏ　ｃｌｏｓｅ　ｆｒｏｍ　ｂｅｈｉｎｄ | The closer style. Needs two rows; kept in full because it is the paired opposite of *lead* and abbreviating one of the pair breaks the contrast |
+| １・２着 | １ｓｔ　ａｎｄ　２ｎｄ | Digits stay full-width — this whole message is a table of numbers (`３−６`, `１２３４５`) and spelling them out would be unreadable. Narrows §10.8 |
+| ３−６ | ３−６ | `−` is U+2212, which **is** in the §3.1 set. Reproduced exactly |
+
+### 15.2 The war council
+
+| Japanese | English | Note |
+|---|---|---|
+| 責任はどうとるつもりだ | ｈｏｗ　ｄｏ　ｙｏｕ　ｉｎｔｅｎｄ　ｔｏ　ａｎｓｗｅｒ　ｆｏｒ　ｔｈｉｓ | |
+| 体面が保てる | ｋｅｅｐ　ｙｏｕｒ　ｆａｃｅ | |
+| 恥さらし | ａ　ｄｉｓｇｒａｃｅ | |
+| 黒幕 | ｗｈｏ　ｉｓ　ｂｅｈｉｎｄ　ｉｔ | Rendered as a clause, not the noun “mastermind”, because the source segment is a bare `黒幕が。` fragment standing alone |
+
+### 15.3 Register
+
+| Who | Register |
+|---|---|
+| The racetrack guide (script 8604) | Friendly and plain-spoken, light contractions (`ｉｔ’ｓ`, `ｌｅｔ’ｓ`, `ｙｏｕ’ｌｌ`). **Not** a §7 tutorial box — those are keyed to `{=FA1000300030}` and have no personality; she does, and the source's `～の` / `～よ` / `ゆー` carry it |
+| Anselmo | Blustering and superior, no contractions — consistent with the “Anselmo-type Imperial officers” entry already in §14.6 |
+| Alfred | Formal, defensive of his men, no contractions |
+| The 9th Army side (script 1234) | Rough and clipped; `ぜ` / `てめえ` / `ねえ` carried by contractions |
+
+---
+
+## 16. The `×` button decision (FLAGS.md §A3 — settled 2026-08-06)
+
+**Decision: `×ボタン` → `Ｃｒｏｓｓ　ｂｕｔｔｏｎ`.** Entered in §3. Option 1 of the two on the table.
+
+**Why not the glyph (option 2).** `tools/riotfont.py` was checked before deciding, and the
+answer is in two parts:
+
+- **Space exists.** `SJIS_TO_ASCII` holds 88 codes; the compact routine stores 8 bytes per glyph
+  plus a 2-byte code and a 4-byte pointer, so the whole table is about 1,232 bytes inside an
+  8,704-byte `AUTO_WINDOW` (`0x800F3E00`–`0x800F6000`). One more glyph costs 14 bytes. **The font
+  is not full** — that is worth recording, because §A3 assumed it might be.
+- **But there is no ✗ to put in it.** Every glyph is derived from `font8x8(ch)`, which is indexed
+  `ord(ch) - 0x20` into a 95-entry ASCII bitmap covering only U+0020–U+007E. SJIS `0x817E` (`×`)
+  is not in `SJIS_TO_ASCII`, and nothing in the pipeline can supply a bitmap that is not an ASCII
+  character. Adding ✗ means hand-authoring an 8×8 bitmap **and** changing `SJIS_TO_ASCII` /
+  `font8_rows_msb` to accept raw glyph data instead of a character — then re-proving the hook on
+  hardware. That is a tooling session, not a translation one, and it would not have round-tripped
+  today.
+
+**Why *Cross* and not *X*.** §3 already fixes ○ → `Ｃｉｒｃｌｅ　ｂｕｔｔｏｎ` and
+□ → `Ｓｑｕａｒｅ　ｂｕｔｔｏｎ` — by **shape name**. `Ｘ　ｂｕｔｔｏｎ` would make ✗ the only
+button named after the letter on the keycap, and §4.3 forbids restyling the other two silently to
+match. *Cross* is also Sony's own European name for the button, so it is not an invention.
+Width is not the deciding factor (`Ｘ　ｂｕｔｔｏｎ` is 8 columns, `Ｃｒｏｓｓ　ｂｕｔｔｏｎ` is 12);
+both fit a 24-column row with room to spare, and there is no byte pressure in bank 43.
+
+**Consequence.** △ → `Ｔｒｉａｎｇｌｅ　ｂｕｔｔｏｎ` is fixed in §3 at the same time, so the
+question cannot be reopened one button at a time. If the font work is ever done, all four
+entries change together, as a single §4.3 correction.
