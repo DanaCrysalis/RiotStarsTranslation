@@ -128,9 +128,29 @@ chunks **0, 10, 11, 12, 14, 34, 35, 40** (prologue + all of tier E).
 | 攻撃力 / 防御力 / 機動力 / 戦闘力 | attack power / defence power / mobility / combat power | British spellings (defence, armour) throughout |
 | 一撃必殺 | kills with one blow | |
 | 山林 | woodlands | |
-| クラスＮＮ | Ｃｌａｓｓ　ＮＮ | untranslated placeholder slots 41–43; digits stay full-width |
+| クラスＮＮ | Ｃｌａｓｓ　ＮＮ | untranslated placeholder slots 41–43 and 70; digits stay full-width |
 | ダミーぶきです | Ｔｈｉｓ　ｉｓ　ａ　ｄｕｍｍｙ　ｗｅａｐｏｎ． | unused placeholder, 126× |
 | ダミーぼうぐです | Ｔｈｉｓ　ｉｓ　ａ　ｄｕｍｍｙ　ａｒｍｏｕｒ． | unused placeholder, 84× |
+| 進化型 / 進化した | evolved | adjectival, as 昇格型 → *promoted* already is: `Ｘの進化型` → **an evolved X**. **Third ladder** — never interchange with 昇格型 or 上級 |
+| 完成型 | perfected | `オークの完成型` → *the perfected orc*. Distinct from 進化型 and from 最上級 → highest‐class |
+| 突然変異 / 突然変異種 | mutation / a mutant X | `スライムの突然変異種` → *a mutant slime* |
+| 亜人種 | demi‐human | uses ‐ (U+2010) |
+| アンデッド | undead | |
+| ブレス | breath | `炎のブレスを吐く` → *breathing fire* |
+| 石化能力 | petrifying power / petrification | both forms used; the noun where a row will not take the adjective |
+| 触手 | tentacles | |
+| 粘液状 / ゼラチン状 | slimy / gelatinous | keep the two distinct — they are two different classes |
+| 怪力無双 | matchless might | |
+| 暗殺猫 | assassin cat | |
+| 額に宝石 | a gem in its brow | the `謎の生物` entry; **Gem** stays capitalised only as the pickup (§3), lowercase here — it is an ornament, not the item |
+| 加護 | blessing | `加護を得た` → *blessed by*. Recurs on three weapon entries and the shadow dragon |
+| 機械兵 ＮＮ号機 | machine soldier Unit ＮＮ | 号機 → **Unit**, per ４号機 → Ｕｎｉｔ　４ (§11.2); digit full-width |
+| 量産型 / 試作機 / 改良型 / 最終型 | mass‐produced / prototype / improved / final | four distinct model words |
+| 乱射タイプ | Barrage | the scatter-fire machine line |
+| 自走砲 / 固定砲 / 無人砲台 | Self‐propelled Gun / Fixed Gun / turret | the first two are numbered dev placeholders (`です！`) and keep the `Ｔｈｉｓ　ｉｓ` frame of ダミーぶきです |
+| パーティーアタック / パーティアタック | party attack | both spellings, one English form |
+| パワーＵＰ | plain English (*more power*, *raises … power*) | the full-width caps are Japanese emphasis on a loanword; per ＨＩＴ → *hits* (§3), English needs none |
+| 攻撃力＋ＮＮ (weapon stat row) | Ａｔｋ＋ＮＮ | **stat row only** — prose keeps *attack power* (§4). `Ａｔｔａｃｋ＋１０　Ｇｅｍ　Ｔｙｐｅ：Ｇｒｅｅｎ` is exactly 24 columns; `Ａｔｋ` holds every stat row at ≤ 21. See FLAGS |
 
 ## 5. Verbal tics — decided, never mix
 
@@ -219,9 +239,16 @@ Do not treat these as decisions. Promote on first use.
 ## 10. Open questions
 
 1. **リオン — Lion or Leon.** Unresolved. Decide before the character appears.
-2. **Class/unit name table.** Untouched; needs the ≤ 20-character forms fixed.
+2. ~~**Class/unit name table.**~~ **PROSE FORMS RESOLVED 2026-08-06 (§17.1); the table itself is
+   still untouched.** The ≤ 20-character label forms still need fixing, but the rule that decides
+   their capitalisation — and every prose mention of a class in the description table — is now
+   settled. §13.12 and §13.17 are resolved by the same rule.
 3. **Description window row count.** 3 or 4 rows is unconfirmed; §3.2 of the prompt keeps
-   descriptions to 2 lines + Gem Type until someone checks in-game.
+   descriptions to 2 lines + Gem Type until someone checks in-game. `batch_003` holds every one
+   of its 102 entries to that shape. ⚠️ **`batch_001` does not** — five entries there render three
+   description rows plus the Gem Type row, i.e. four rows. They were shipped before this rule was
+   written down. If the window turns out to be three rows, those five need re-cutting; nothing in
+   `batch_003` does. Listed in `FLAGS.md`.
 4. **`{FCC0}{FFFE}` leading break.** Whether it wastes a top row is unconfirmed. Preserve for now.
    Related: a page carrying a leading blank *and* four text rows *and* a trailing blank has never
    appeared in the source — tier E avoided producing one. Worth settling with the same in-game check.
@@ -231,8 +258,9 @@ Do not treat these as decisions. Promote on first use.
 6. ~~**`ほう` may already be rendered in chunk 0.**~~ **RESOLVED 2026‐08‐06.** Chunk 0 line 14
    renders Rimul's `ほう・・・。` as `Ｏｈ．．．．`. Per this entry's own rule chunk 0 wins, so
    **ほう / ほお → `Ｏｈ`**, and §6's `Ｈｏｈ` entry is superseded. Used as `Ｏｈ` in script 1234.
-   ⚠️ **`tl/battle/chunk_035.txt` line 13 still says `Ｈｏｈ，` and must be changed to `Ｏｈ，`** —
-   not done in this session, which was script‐only. Same width, so no re‐flow is needed.
+   ✅ **`tl/battle/chunk_035.txt` is now fixed** (2026-08-06, batch 003 session): the line reads
+   `Ｏｈ，`. Same width, no re-flow; the chunk went 557 → 555 bytes. **No `Ｈｏｈ` remains anywhere
+   in `tl/`,** so §11.5's "distinct from ほう → Ｈｏｈ" should be read as *distinct from ほう → Ｏｈ*. Same width, so no re‐flow is needed.
 7. **Player gender.** Ch.12 renders Shiron's `あんちゃん` as `ｌａｄ`, which assumes a male player
    character. If the name is free-entry with no fixed gender, swap to `ｆｒｉｅｎｄ` — same 18
    columns.
@@ -416,11 +444,11 @@ chunk 7 uses several of them and later chunks will use the rest.
 
 ## 13. Open questions (continued from §10)
 
-12. **`ウィザード` vs `魔導師`.** §11.4 fixed 魔導師 → *wizard* (lowercase, prose, for Guilford);
-    §12.2 fixes ウィザード → *Ｗｉｚａｒｄ* (capitalised, the class). These are very probably the
-    same class written two ways in the source. Neither entry is changed here — per §4.3 that needs
-    an explicit decision. Settle it when the class-name table is fixed (§10.2), and if 魔導師 turns
-    out to be the class, revisit `pending/chunk_043.txt`.
+12. ~~**`ウィザード` vs `魔導師`.**~~ **RESOLVED 2026-08-06 — see §17.1. Both existing entries
+    stand unchanged and nothing needs revisiting**, including `pending/chunk_043.txt`. They are
+    the same class named two ways, and the species test explains why they are written differently:
+    魔導師 names *what Guilford is* (a man who works magic → lowercase *wizard*), ウィザード names
+    *the class conferred at the sanctuary trial* (→ `Ｗｉｚａｒｄ`).
 13. **The ch.33 sorceress is unnamed.** No name anywhere in the chunk. If a later chunk names her,
     re-check her register.
 14. **`キャビア` — Cavia or Caviar?** The kana are exactly the loanword for caviar, so the pun may
@@ -432,8 +460,9 @@ chunk 7 uses several of them and later chunks will use the rest.
     Not a typo for ティミー: in ch.5 line 10 Fei is *surprised* by Timmy's arrival, so she cannot
     have been calling her in line 1. Plausibly Fei's beast, since Fei is a 獣使い, or a cut
     character. Rendered *Tita* pending an in-game look.
-17. **`オーク` capitalisation.** Resolved to lowercase *orc* for prose (§14.3), but the class-name
-    table (§10.2) may need `Ｏｒｃ`. Settle both at once.
+17. ~~**`オーク` capitalisation.**~~ **RESOLVED 2026-08-06 — see §17.1.** Both halves, as the
+    question asked: prose keeps lowercase *orc* (§14.3, unchanged), and the class-name table takes
+    **`Ｏｒｃ`** — every entry in that table is capitalised, because it is a column of labels.
 
 ---
 
@@ -507,3 +536,107 @@ both fit a 24-column row with room to spare, and there is no byte pressure in ba
 **Consequence.** △ → `Ｔｒｉａｎｇｌｅ　ｂｕｔｔｏｎ` is fixed in §3 at the same time, so the
 question cannot be reopened one button at a time. If the font work is ever done, all four
 entries change together, as a single §4.3 correction.
+
+---
+
+## 17. Added by script batch 003 (the monster / class / weapon description table)
+
+Rendered in `tl/script/batch_003.tsv` — `script_unique.txt` lines 53–216: every remaining line
+ending `ジェムタイプ：<colour>` (101 of them), plus the `クラス７０` placeholder. 2,142 message
+instances. The vocabulary entries are in **§4**; this section carries the reasoning.
+
+### 17.1 The class-name rule — the species test (resolves §10.2 prose forms, §13.12, §13.17)
+
+The descriptions name other classes constantly, and get one wrong and it is wrong 21 times in a
+table the player reads side by side. The rule, which fits **every** decision already made and
+therefore requires no rework anywhere:
+
+> **In the class-name TABLE, every entry is capitalised** — `Ｏｒｃ`, `Ｄｒａｇｏｎ`,
+> `Ｋｉｌｌｅｒ　Ｗｏｌｆ`, `Ｗｉｚａｒｄ`. It is a column of labels, and a label column is
+> capitalised throughout or not at all.
+>
+> **In description PROSE, apply the species test**: a class word is lowercase when it names
+> *what a creature is* — a species, a kind, a trade — and capitalised only when it names *a title
+> an individual holds*.
+
+The test explains the existing entries rather than overriding them:
+
+| Already fixed | Test says | Status |
+|---|---|---|
+| バジリスク → basilisk, オーク → orc, 妖精 → fairy, 武闘家 → martial artist | species / trade | ✅ unchanged |
+| フリーナイト → Free Knight, ビーストマスター → Beast Master | conferred titles, coined | ✅ unchanged |
+| 魔導師 → wizard (§11.4, Guilford) | what he *is* | ✅ unchanged |
+| ウィザード → `Ｗｉｚａｒｄ` (§12.2, the sanctuary class) | the title *awarded* | ✅ unchanged |
+
+So every creature named in this batch is **lowercase**: orc, ogre, giant, hobbit, brownie, fiend,
+dragon, fairy, skeleton, slime, golem, roper, wraith, succubus, basilisk, dark elf, dark mage,
+dark knight, killer wolf, grey ooze, gelatinous cube, angel beast, sea anemone, lizard warrior.
+The single capitalised creature word in the batch is **Ｎｅｒｇａｌｉ**, which is a name, not a kind.
+
+**Why not capitalise the coinages** (Killer Wolf, Gelatinous Cube, Grey Ooze)? Because the line
+would then run between "coined in katakana" and "not", which puts サキュバス → Succubus and
+バジリスク → Basilisk on the capitalised side and contradicts §4 and §14.3 directly. The species
+test is the only line that leaves every prior decision standing.
+
+### 17.2 Class and creature names first rendered here
+
+| Japanese | English | Note |
+|---|---|---|
+| ホビット | hobbit | lowercase in prose (§17.1); `Ｈｏｂｂｉｔ　Ｖｉｌｌａｇｅ` in §2 is unaffected — that is a place name |
+| ブラウニー | brownie | **promoted from §9 PROVISIONAL**, lowercase |
+| 鬼 / 悪鬼 | ogre / fiend | **promoted from §9.** 悪鬼 is the 豚顔 one → *a pig‐faced fiend* |
+| オーガ | ogre | same English as 鬼, deliberately — same creature, two source spellings, and only the weapon entry 192 uses the katakana |
+| 巨人 | giant | **promoted from §9** |
+| ダークエルフ / ダークメイジ / ダークナイト | dark elf / dark mage / dark knight | lowercase; 暗黒 → *dark* already fixed in §4 |
+| 魔術戦士 | mage warrior | **kept distinct** from 魔法戦士 → *magic warrior* (§4), on the same 魔術 → mage / 魔法 → magic split the glossary already draws. 女魔術戦士 → *a female mage warrior* |
+| 暗黒剣士 | dark swordsman | |
+| サキュバス | succubus | |
+| キラーウルフ | killer wolf | |
+| スケルトン / レイス | skeleton / wraith | |
+| 生霊 | the living spirit | the wraith's 異名 |
+| ゴーレム | golem | |
+| スライム / グレイウーズ / ゼラチナスキューブ / ローパー | slime / grey ooze / gelatinous cube / roper | four distinct classes; British *grey* |
+| ドラゴン | dragon | 12 near-identical entries — see 17.5 |
+| 竜人 | dragonfolk | same English as 龍人族 (§2); the kanji differ, the word does not |
+| ネルガリ | Ｎｅｒｇａｌｉ | the dark elemental. A name, so capitalised. Alt **Ｎｅｒｇａｌ** (the Babylonian god the kana point at) — *Nergali* chosen as the plain transliteration; see FLAGS |
+| エンゼルビースト | angel beast | the light elemental, and by the species test a kind, not a name — so lowercase where Ｎｅｒｇａｌｉ is not. Deliberate, not an oversight |
+| トカゲ戦士 | lizard warrior | extends トカゲ → lizard (§2) |
+| 王様トカゲ | king lizard | the basilisk's own entry |
+| オリジナルＮ号機 | Ｏｒｉｇｉｎａｌ　Ｕｎｉｔ　Ｎ | the four unique machines, as against the 量産型 line |
+| 機構車両 | vehicle | *mechanical* dropped for width — see FLAGS |
+
+### 17.3 Weapons, and the names on them
+
+| Japanese | English | Note |
+|---|---|---|
+| 妖刀 | “ｄｅｍｏｎ　ｂｌａｄｅ” | `「…」` → `“…”`, per the `『…』` precedent (§3) |
+| 東洋の名刀 | a famed Eastern sword | |
+| 神聖剣 / 神聖の名剣 / 神聖な弓 | holy sword / famed holy sword / holy bow | |
+| 片刃の槍 | single‐edged spear | |
+| 青龍 | blue dragon | lowercase — the scales of a kind of dragon, not a named individual |
+| 水蛇 | sea snake | alt *water serpent*, which will not fit the row; see FLAGS |
+| トクロフ | Ｔｏｋｒｏｆ | the tree the spear is cut from. Appears once in either dump. Alt *Tokurofu* |
+| 魔神ルシファ | the demon god Ｌｕｃｉｆｅｒ | European form, matching Bauer / Carline / Helfer. Alt *Lucifa* |
+| アポロン神 | the god Ａｐｏｌｌｏ | same rule |
+| 女神アルテミス | the goddess Ａｒｔｅｍｉｓ | Ａｒｔｅｍｉｓ was already fixed in §1; this adds the epithet |
+| こん棒 | club | |
+| さく裂弾 / 火炎弾 | burst shells / flame shells | |
+
+### 17.4 Fixed sentence frames
+
+Identical Japanese must produce byte-identical English, and near-identical Japanese sitting side
+by side in one table must not drift. Four frames carry most of the batch:
+
+| Source shape | English frame |
+|---|---|
+| `Ｘが昇格したＹ` | **`Ａ　ｐｒｏｍｏｔｅｄ　Ｘ，　<Y>．`** — or `Ａ　Ｙ　ｐｒｏｍｏｔｅｄ　ｆｒｏｍ　ｔｈｅ　Ｘ．` where the row takes it. Both are in use; the short form is the default |
+| `Ｘが進化したＹ` | **`Ａ　Ｙ　ｅｖｏｌｖｅｄ　ｆｒｏｍ　ｔｈｅ　Ｘ．`** |
+| `Ｘの進化型` | **`Ａｎ　ｅｖｏｌｖｅｄ　Ｘ．`** (adjectival, as §4's *promoted* and *advanced* already are) |
+| `〜のブレスを吐くドラゴン` | **`Ａ　ｄｒａｇｏｎ　ｂｒｅａｔｈｉｎｇ{FFFE}<element>．`** — all eight breath dragons, 強力な → *powerful*, 最強の → *the strongest* |
+
+### 17.5 Register
+
+There is none: this table is a reference list the player reads while choosing a class, so the
+voice is the same flat catalogue voice as `batch_001` — noun phrase, one clause, full stop. The
+only entries with any personality are the three unfinished dev slots (`自走砲１です！`), which
+keep the `Ｔｈｉｓ　ｉｓ` frame of `ダミーぶきです` and their `！`.

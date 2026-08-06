@@ -10,6 +10,11 @@ Second session of 2026-08-06 delivered `tl/script/batch_002.tsv` (script lines 1
 **`check` reports PROBLEMS (0) and `build` writes output for the first time in the project.**
 §A1, §A2 and §A3 are resolved below; §C1 is partly resolved; §D4, §D5, §C4 and §C5 are new.
 
+Third session of 2026-08-06 delivered `tl/script/batch_003.tsv` (the 102-entry description table,
+**14.6% → 41.6% of message instances**), re-flowed `batch_001`, fixed §C4 and the carried-over
+`chunk_035` edit. `check` still reports **PROBLEMS (0)** and `build` still writes both dumps.
+**§C4 and §E's `ほう` line are resolved; §F is new and §F2 is the most important thing here.**
+
 ---
 
 ## A. Blocking the build right now
@@ -157,8 +162,11 @@ throughout banks 0, 1, 5, 42 and 43.
 limit and pass `check` silently. `batch_002` was laid out by hand against the true cost of 7 and
 verified with the new `rowcheck.py script` mode; nothing in `batch_001` or `batch_002` is over.
 
-Fix belongs in `assemble.py`: extend the substitution to `\{FFEC\}\{=00\}\{=00\}`. Not done
-here — this session deliberately changed no tool that `check` depends on. The other `{FFEC}`
+Fix belongs in `assemble.py`: extend the substitution to `\{FFEC\}\{=00\}\{=00\}`.
+**DONE 2026-08-06 (batch 003 session).** One line added to `validate_body`, immediately after the
+`{FC00}` substitution. `check` was then re-run over the whole tree as the session prompt required:
+it surfaced **nothing** — PROBLEMS (0) still — so no existing line was relying on the insert
+costing 0 columns, in `batch_001`, `batch_002`, `batch_003` or any fall-through Japanese line. The other `{FFEC}`
 variants (`{=01}` a number, `{=03}` an item name, and `{=02}` / `{=04}` / `{=05}` / `{=06}`,
 which are undocumented) have **no known width bound** and want an in-game look before anyone
 gives them a number.
@@ -274,7 +282,7 @@ All are entered in `glossary.md` §14 and cross-referenced from §13.
 | `ティータ` → Tita | §14.1 | **hapax** — one occurrence in the battle dump, zero in the script dump. Not a typo for ティミー: in ch.5 line 10 Fei is *surprised* by Timmy's arrival, so she was not calling her in line 1. Possibly Fei's beast, since Fei is a 獣使い, or a cut character (§13.16) |
 | `ベルナール` → Bernard | §14.2 | alt *Bernal* |
 | `オーク` → orc (lowercase) | §14.3 | class-table form still open (§10.2, §13.17) |
-| `ほう` → **Ｏｈ** (was `Ｈｏｈ`) | §6, §10.6 | **Resolved, not open** — chunk 0 line 14 already had `Ｏｈ．．．．` and §10.6 said chunk 0 wins. ⚠️ `tl/battle/chunk_035.txt` line 13 still reads `Ｈｏｈ，` and must become `Ｏｈ，`. Same width, no re-flow. Not done here: this session was script-only |
+| `ほう` → **Ｏｈ** (was `Ｈｏｈ`) | §6, §10.6 | **Closed 2026-08-06.** `tl/battle/chunk_035.txt` now reads `Ｏｈ，`; the chunk went 557 → 555 bytes. No `Ｈｏｈ` remains anywhere in `tl/` |
 | `クレス` → Cress | glossary §1 | alt *Kress*, *Cres*; no in-game romanisation |
 | `ウエストバリー` → Westbury | glossary §2 | alt *Westbarry* |
 | `ゼファー・クリッペン` → Zephyr Krippen | glossary §1 | name taken from the session prompt; alt *Zepher*, *Crippen*, *Klippen*. Appears **once** in either dump, so nothing corroborates the reading |
@@ -303,3 +311,199 @@ an eye-dialect the §3.1 charset cannot carry.
 **Chunk 5:** 橋の前にもオークが drops も; 王女様だけじゃなく → *not only her*;
 自分たちで守る → *guarded our own*; Cavia given `ｃａｎ’ｔ` in her exhausted opening line,
 against her otherwise uncontracted register (§14.6) — the one deliberate exception.
+
+---
+
+## F. Script batch 003 — the description table (2026-08-06)
+
+### F1. The byte figure, measured the real way
+
+**Bank 40: 39,189 / 40,960 used — 1,771 bytes free.** Measured through
+`riotscript._emit_bytes_from_body`, i.e. counting the 900-byte `{HDR:}` block that `assemble.py`'s
+`cost()` charges as 0. `check` will report this bank ~900 lighter; the figure above is the one the
+inserter sees, and it is the one that decides overflow.
+
+Every bank, before → after this session:
+
+| Bank | before | after | free | note |
+|---|---|---|---|---|
+| **40** | 33,869 | **39,189** | **1,771** | the binding constraint, as predicted |
+| 5 | 30,959 | 36,279 | 4,681 | |
+| 2 | 26,835 | 32,155 | 8,805 | |
+| 41 | 40,607 | 40,607 | 353 | **untouched** — no description line lives in bank 41 |
+| the other 18 of the 21 | | | ≥ 10,000 | |
+
+Growth is 5,320 bytes per bank: 5,130 from characters (EN 5,131 vs JP 2,530) and 190 from the
+95 added `{FFFE}` breaks. One line of the block lives in bank 29 alone, not in the 21.
+
+**Ratio hit: 2.03x.** The prompt asked for ≤ 1.8x and ~2,000 bytes of slack; I hit 2.03x and 1,771,
+and here is why 1.8 is not reachable on this material rather than an excuse:
+
+- The `Ｇｅｍ　Ｔｙｐｅ：<colour>` row is **fixed by §3 and unvarying**. It is 12–15 characters
+  against the source's 8–10, i.e. **1.63x on its own**, and it is 1,371 of the 5,131 characters in
+  the batch. The descriptions would have to come in at 1.72x to drag the whole to 1.8.
+- `batch_001`, the same table by the same rules, shipped at **2.31x**. This batch is 12% tighter
+  than the work it has to sit beside, which is as far as it can go without the entries reading
+  differently from their neighbours in a list the player scans side by side.
+- What is left is not fat. The ceiling is geometry, not bytes: 2 description rows × ≤23 columns
+  is 46 characters, and 42 of the 101 descriptions are within 6 characters of that wall.
+
+### F2. Bank 40 cannot hold a complete translation — and neither can 41, 5 or 2
+
+This is the finding that matters, and it is not about this batch. I measured every bank's
+**remaining untranslated Japanese** and projected it at 1.9x, a ratio no shipped work has beaten
+(§B2's floor is 1.64x under maximum compression; real achieved ratios are 1.73–2.31):
+
+| Bank | free now | untranslated JP chars | growth needed @1.9x | verdict |
+|---|---|---|---|---|
+| **41** | 353 | 14,607 | 26,292 | **short by 25,939** |
+| **40** | 1,771 | 12,514 | 22,525 | **short by 20,754** |
+| **5** | 4,681 | 9,573 | 17,231 | **short by 12,550** |
+| **2** | 8,805 | 8,657 | 15,582 | **short by 6,777** |
+| all other 40 banks | | | | fit, most with room to spare |
+
+**~66,000 bytes short in total.** SCRIPT.BIN is "69% free" in aggregate (§3.3) and that aggregate
+is misleading: the free space is in banks 10, 11, 21–27 and 34–39, which hold almost no text,
+while the four banks that carry the bulk of it are full. Bank 41's 353 free bytes were always
+known (§3.3); the other three were not.
+
+Consequences, in order:
+
+1. **The main script needs the same treatment as chunk 43** — repointing, or a bank-spill scheme —
+   and it needs it before roughly a third of the remaining script can ship. This is the
+   `pending/slot-extension.md` question again, on the `MAIN1.EXE` side. It should be settled
+   before many more script sessions, for the same reason §B3 says to settle `KOUSEI.EXE` first:
+   otherwise sessions are spent producing text that cannot be inserted.
+2. **The "keep ~2,000 bytes of slack" instruction is moot** and I have not distorted the
+   translation to satisfy it. Reserving 2,000 bytes against a 20,754-byte shortfall buys nothing;
+   what buys something is writing tight, which is why this batch is at 2.03x and not at 2.31x.
+3. **Nothing overflows today.** No bank exceeds 0xA000, `insert` would not raise, and `check`
+   passes. The failure is in the future, not in this build.
+4. Worth re-measuring with `tools/bankmeasure.py` (added this session) at the start of every
+   script session. It is the only tool that reports the figure the inserter actually uses.
+
+### F3. Scope — the block is 101 lines, not 102
+
+The session prompt's count of "102 remaining unique lines ending `ジェムタイプ：<colour>`" includes
+**`script_unique.txt` line 979**, which is not a description-table line: it is the 404-character
+`『ジェム』` tutorial, and it merely *contains* the word `ジェムタイプ` in prose. Filtering on
+lines that actually **end** `ジェムタイプ：<colour>`, as the prompt's own wording says, gives
+**101**. Line 979 is untranslated and out of scope; it belongs with the §7 tutorial boxes.
+
+The prompt's 2,929-character figure is inflated the same way. The block as translated is
+**2,525 Japanese characters over 101 lines** (25.0 average, not 28.7), plus the `クラス７０`
+placeholder at 5 — **2,530 in 102 entries**, which is the denominator of the 2.03x above.
+
+Not a defect in the prompt's conclusion: 101 lines × 21 occurrences is still 2,121 instances and
+still by far the biggest block available. `assemble.py status` now reports **41.6%** of message
+instances translated, up from 14.6%.
+
+### F4. `{FFFE}` counts, per line
+
+Uniform, so a table of 102 rows would be noise:
+
+| Change | Lines | Why |
+|---|---|---|
+| **1 → 2** | 95 | the source puts the whole description on one row (16 JP columns) and lets `ジェムタイプ` share the second; English needs two description rows plus the Gem Type row on its own |
+| 1 → 1 | 6 | lines 79, 117, 119, 120, 142, 174 — the description fits one row, so the source's single break is all that is needed |
+| 0 → 0 | 1 | the `クラス７０` placeholder |
+
+**No entry exceeds three text rows**, i.e. two description rows plus `Ｇｅｍ　Ｔｙｐｅ`, per
+§10.3 and the prompt's ceiling. Verified mechanically, not by eye: `rowcheck.py script` reports
+columns clean across all 3,405 translated lines and no page over four text rows that the source
+did not already exceed (the two inherited ones, lines 1234 and 8194, are unchanged — no third one
+was introduced).
+
+### F5. `batch_001` re-flow — 20 segments at 24 columns, now 3
+
+Done as the prompt invited, and it **saves** 34 characters (68 bytes per bank), so it cost the
+budget nothing. Sixteen entries changed; the Japanese keys are untouched and `check`/`rowcheck`
+were re-run over the whole tree afterwards.
+
+Representative changes: `Ａ　ｓｗｏｒｄ　ｗａｒｒｉｏｒ　ｏｆ　ｇｒｅａｔ` / `ｓｐｅｅｄ　ａｎｄ　ｓｋｉｌｌ．`
+→ `Ａ　ｓｗｏｒｄ　ｗａｒｒｉｏｒ，　ｇｒｅａｔ` / `ｉｎ　ｓｐｅｅｄ　ａｎｄ　ｓｋｉｌｌ．`;
+`ｗｈｏ　ｋｉｌｌｓ　ｗｉｔｈ　ｏｎｅ　ｂｌｏｗ．` → `ｋｉｌｌｉｎｇ　ｗｉｔｈ　ｏｎｅ　ｂｌｏｗ．`
+(§4's *kills with one blow* survives intact); `ｗｈｏ　ｒｏａｍｓ　ｔｈｅ　ｗｏｏｄｌａｎｄｓ．`
+→ `ｒｏａｍｉｎｇ　ｔｈｅ　ｗｏｏｄｌａｎｄｓ．`.
+
+Three word changes worth naming, all in already-shipped text:
+
+- 神の使いといわれる → `Ａ　ｓｗｏｒｄｓｗｏｍａｎ　ｃａｌｌｅｄ` (was *said to be*), which also
+  matches how 異名を持つ / と言われる are rendered throughout `batch_003`.
+- 遠隔戦闘の経験を積んだ → `ｗｅｌｌ　ｖｅｒｓｅｄ　ａｔ　ｒａｎｇｅ` (was *in ranged combat*) —
+  one character short of fitting, and *ranged combat* survives in the neighbouring entry.
+- 乗馬と戦闘の技術を極めた → `Ａ　ｋｎｉｇｈｔ，　ｍａｓｔｅｒ　ｏｆ` drops *both*.
+
+**Three segments could not be brought under 24 and are unchanged**, because every arrangement
+either drops a word or needs a third description row:
+
+1. `ｓｗｏｒｄｓｍａｎ　ｉｎ　ｌｉｇｈｔ　ｇｅａｒ．` (素早さと技に優れた軽装の男剣士) — its
+   partner row is fixed, at 21.
+2. `Ａｎ　ａｒｍｏｕｒｅｄ　ｓｗｏｒｄｓｍａｎ　ｏｆ` and 3. `ｈｉｇｈ　ａｔｔａｃｋ　ａｎｄ　ｄｅｆｅｎｃｅ．`
+   (高い攻撃力と防御力を持つ鎧剣士) — 48 characters of content against a 46-character ceiling.
+   `ｏｆ　ｈｉｇｈ　ａｔｔａｃｋ　ａｎｄ　ｄｅｆｅｎｃｅ．` is 27 and `ｈｉｇｈ　ａｔｔａｃｋ　ａｎｄ　ｄｅｆｅｎｃｅ．`
+   is exactly 24, so the break has nowhere to go.
+
+### F6. `batch_001` has five entries that render four text rows
+
+Not introduced here, but it is the one place where existing work depends on the unconfirmed §10.3
+window being four rows rather than three: 高い戦闘力を持つ上級の天馬騎士, 長射程の炎・雷の単体魔法…,
+モンスターを操り、氷魔法を使う…, 仲間の能力を引き出して戦うことを…, and 炎・雷・光魔法を使う最上級の….
+Each is three description rows plus `Ｇｅｍ　Ｔｙｐｅ`. **Every one of the 102 entries in
+`batch_003` is three rows**, so if the in-game check comes back "three rows", only these five need
+re-cutting.
+
+### F7. `Ａｔｋ＋ＮＮ`, and why the weapon stat row is not `Ａｔｔａｃｋ`
+
+Fourteen weapon entries carry a second field: `攻撃力＋ＮＮ　ジェムタイプ：色`.
+`Ａｔｔａｃｋ＋１０　Ｇｅｍ　Ｔｙｐｅ：Ｇｒｅｅｎ` is **exactly 24 columns**, and `Ｇｅｍ　Ｔｙｐｅ：`
+cannot be shortened (§3, 2,964 occurrences). Rather than create the one fragile row the prompt
+told me not to create, the stat label is **`Ａｔｋ＋ＮＮ`**, which holds every stat row at ≤ 21.
+Prose keeps *attack power* (§4) — this is a mechanical stat field, and the source itself uses a
+compressed label there.
+
+**Swap it back to `Ａｔｔａｃｋ＋ＮＮ` the moment the description window is confirmed wider than 24**,
+or if a reviewer would rather have the full word and accept 24 columns on the single Green weapon
+(line 171 — the only Green one in the table, so it is exactly one row, once).
+
+### F8. Deviations from literal (§2.1 steps 5–6)
+
+- 古の種族、ダークエルフの血を引く → *Ａ　ｍａｇｅ　ｏｆ　ａｎｃｉｅｎｔ　ｄａｒｋ　ｅｌｆ　ｂｌｏｏｄ．*
+  — 古の種族 (*an ancient race*) folded into *ancient*; both rows are within 3 of the wall.
+- 鋭い爪を持ち、鋭敏な動きをする暗殺猫 → *Ａ　ｓｗｉｆｔ　ａｓｓａｓｓｉｎ　ｃａｔ　/　ｗｉｔｈ　ｓｈａｒｐ　ｃｌａｗｓ．*
+  — 鋭敏な動き carried by *swift* rather than a clause.
+- 帝国の量産型機械兵試作機 → *Ｔｈｅ　Ｅｍｐｉｒｅ’ｓ　ｐｒｏｔｏｔｙｐｅ　/　ｍａｃｈｉｎｅ　ｓｏｌｄｉｅｒ．*
+  and クリミアの量産型機械兵２号機改良型 → *Ｃｒｉｍｅａ’ｓ　ｉｍｐｒｏｖｅｄ　…* — **量産型 is
+  dropped in the derived entries only**. It is carried in full by the entry each derives from
+  (`Ｍａｓｓ‐ｐｒｏｄｕｃｅｄ　ｍａｃｈｉｎｅ　ｓｏｌｄｉｅｒ　Ｕｎｉｔ　１`,
+  `Ｃｒｉｍｅａ’ｓ　ｍａｓｓ‐ｐｒｏｄｕｃｅｄ　…`), which sits directly beside it in the list.
+- さく裂弾を放つ長射程の無人砲台 / 火炎弾を放つ… → *Ａ　ｌｏｎｇ‐ｒａｎｇｅ　ｔｕｒｒｅｔ　…* —
+  無人 (*unmanned*) dropped; *turret* carries it and 砲台 has no shorter English.
+- 他のユニットを乗せて運搬できる機構車両 → *Ａ　ｖｅｈｉｃｌｅ　ａｂｌｅ　ｔｏ　ｃａｒｒｙ　/　ｏｔｈｅｒ　ｕｎｉｔｓ．*
+  — 機構 (*mechanical*) dropped for width.
+- 最強の攻撃能力を持つオリジナル４号機 → *…　ｏｆ　ｔｈｅ　/　ｓｔｒｏｎｇｅｓｔ　ａｔｔａｃｋ．* — 能力 dropped.
+- 天をも支える怪力無双の巨人 → *Ａ　ｇｉａｎｔ　ｗｈｏｓｅ　ｍａｔｃｈｌｅｓｓ　/　ｍｉｇｈｔ　ｕｐｈｏｌｄｓ　ｔｈｅ　ｓｋｙ．*
+  — reordered so the relative clause takes the break (§2.1 step 6).
+- 幸運を運ぶと言われる → *ｓａｉｄ　ｔｏ　ｂｒｉｎｇ　ｌｕｃｋ．* — *good fortune* would not fit.
+
+### F9. Readings with a defensible alternative
+
+| Kana | Chosen | Alternative | Why it might change |
+|---|---|---|---|
+| ネルガリ | `Ｎｅｒｇａｌｉ` | **`Ｎｅｒｇａｌ`** | The kana are one vowel off the Babylonian death-god ネルガル, and the class is a dark elemental, so the god is very probably the source. Plain transliteration chosen because nothing in either dump corroborates it. Appears twice, both in this table |
+| 水蛇 | `ｓｅａ　ｓｎａｋｅ` | *water serpent* | The literal *water serpent* is 4 columns longer and does not fit the row; *hydra* was rejected as a different creature |
+| トクロフ | `Ｔｏｋｒｏｆ` | *Tokurofu*, *Tocroph* | One occurrence in either dump. A tree, apparently |
+| ルシファ | `Ｌｕｃｉｆｅｒ` | *Lucifa* | Strict transliteration is *Lucifa*; the European form matches the Bauer / Carline / Helfer naming already fixed |
+| 悪鬼 | `ｆｉｅｎｄ` | *demon* | §9 already glossed it *fiend*, and 豚顔 (pig-faced) is in the same sentence, so *fiend* keeps 鬼 → *ogre* free for the sibling entries |
+| 魔術戦士 | `ｍａｇｅ　ｗａｒｒｉｏｒ` | *spell warrior*, *sorcerous warrior* | Must stay distinct from 魔法戦士 → *magic warrior* (§4); the chosen form uses the 魔術/魔法 split the glossary already draws |
+
+### F10. Suspected source oddities, preserved
+
+- **`子供のドラゴン。成長すれば・・？`** — two dots, not three, and a `？`. Reproduced exactly as
+  `．．？` per §3.1's match-the-dot-count rule. It is the only entry in the table with a question
+  mark, and reads like a designer's note left in.
+- **`自走砲１です！` / `自走砲２です！` / `固定砲３です！`** — three entries written as sentences
+  with `です！` where every other entry is a noun phrase. They are unfinished, like `ダミーぶきです`,
+  and are translated the same way rather than tidied into the table's voice.
+- **`量産型機械兵１号機。`** has no owner where its neighbours name the Empire, Crimea or Seneca.
+  Left as it is.

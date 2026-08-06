@@ -105,6 +105,8 @@ def validate_body(lines, label, jp_ok=False):
         for seg in re.split(r'\{FFFE\}', line):
             for run in re.split(r'\{(?:FCC0|FC30|FC51|FC50|FFFF)\}', seg):
                 t = re.sub(r'\{FC00\}\{=0000\}', 'N' * NAME_COST, run)
+                # main script uses {FFEC}{=00}{=00} for the same player-name insert
+                t = re.sub(r'\{FFEC\}\{=00\}\{=00\}', 'N' * NAME_COST, t)
                 t = re.sub(r'\{[^}]*\}', '', t)
                 if len(t) > COLS:
                     bad.append('%s line %d: %d columns > %d  |%s|'
