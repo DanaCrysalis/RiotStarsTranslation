@@ -11,9 +11,17 @@ Move a file into `tl/battle/` only once the slot constraint for that chunk has b
 |---|---|---|---|
 | `chunk_043.txt` | 11,181 | 8,192 | faithful translation, 1.86x. Needs a ~12 KB slot. **Ship this one.** |
 | `chunk_043_abridged.txt` | 8,941 | 8,192 | evidence only, 1.41x, 13 sentences already deleted — still 749 over. Do not ship. |
+| `chunk_005.txt` | 8,679 | 8,192 | faithful and fully compressed, 1.64x — 487 over. See `FLAGS.md` §2–4. Needs a slot extension, same as 43. |
 
-Both pass every other `assemble.py check` rule: tag parity, charset, 24 columns, 4 rows,
-line count and `{PAD}` identity. The byte budget is the only failure.
+The chunk 43 pair passes every other `assemble.py check` rule: tag parity, charset, 24 columns,
+4 rows, line count and `{PAD}` identity. The byte budget is the only failure.
+
+`chunk_005.txt` passes tag parity, columns, line count and `{PAD}` identity, but has **two
+further defects that are not translation problems** and would need handling even at budget:
+its line 17 carries a dump artifact (`{FC70}{=00}逓{=20000E}`, where lines 14/16 have the clean
+`{FC70}{=0062}{FC20}{=000E}` — the dumper decoded argument bytes 0x9276 as text), which trips
+the charset check; and its source line 10 contains a 7-row and a 5-row page, the first pages
+over 4 rows encountered in any chunk worked so far.
 
 ---
 

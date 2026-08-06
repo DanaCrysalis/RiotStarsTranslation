@@ -325,6 +325,78 @@ unnamed sorceress tests the party's mage and grants the “Ｂｏｏｋ　ｏｆ
 
 ---
 
+## 14. Added by chunks 5 and 7 (the fairy forest; the Black Knights and Nacol)
+
+Chunk 7 is rendered in `tl/battle/chunk_007.txt`. Chunk 5 is rendered in
+`pending/chunk_005.txt` and **does not ship** — it misses its slot by 487 bytes (see
+`FLAGS.md` and `pending/README.md`). The names below are decided regardless, because
+chunk 7 uses several of them and later chunks will use the rest.
+
+### 14.1 People
+
+| Japanese | English | Note |
+|---|---|---|
+| キャビア | Ｃａｖｉａ | The Princess's given name, first revealed here (ch.5 `キャビア王女`, ch.7 `キャビア様`). 5 columns, so `Ｐｒｉｎｃｅｓｓ　Ｃａｖｉａ` fits at 15. Alt *Caviar*, *Kyabia* — Cavia chosen as the plainer name-like form, matching Bauer / Carline / Helfer. ⚠️ see §13.14 |
+| フェイ | Ｆｅｉ | Female 氷龍使い, warden of the fairy forest; joins the party in ch.5 |
+| ナコール | Ｎａｃｏｌ | Cavia's aged former tutor (ch.7). Alt *Nakor*, *Nacoll*. ⚠️ see §13.15 |
+| ティータ | Ｔｉｔａ | ch.5 line 1, `ティータ、合流して。戦うわよ。` — **one occurrence in the whole battle dump, zero in the script dump**. ⚠️ see §13.16 |
+| フィリス様 | Ｌａｄｙ　Ｐｈｙｌｌｉｓ | 様 → Lady per the Rimul precedent. ch.5 reveals Phyllis is the 妖精の村の長. Does **not** change her §1 entry — only adds the honorific form |
+
+### 14.2 Places, factions, ranks
+
+| Japanese | English | Note |
+|---|---|---|
+| 黒の騎士団 | Ｂｌａｃｋ　Ｋｎｉｇｈｔｓ | Parallels 紅の騎士団 → Crimson Knights. 13 columns |
+| ベルナールの教会 / ベルナール教会 | Ｂｅｒｎａｒｄ’ｓ　ｃｈｕｒｃｈ | Possessive form per バウワーの砦 → Bauer's fort. Alt *Bernal* |
+| 妖精の森 | the fairy forest | 妖精 stays a lowercase common noun (§1) |
+| 番人 | warden | Fei's role. Kept **distinct** from 守り神 → guardian |
+| 守り神 | guardian | The forest's tutelary spirit, not a person |
+| 妖精の村の長 | village elder | Phyllis's title |
+
+### 14.3 Classes and roles
+
+| Japanese | English | Note |
+|---|---|---|
+| 氷龍使い | ice dragon tamer | |
+| 獣使い | beast tamer | 使い → *tamer* throughout, not *user* / *handler* |
+| オーク | orc | **Promoted from §9 PROVISIONAL.** Lowercase common noun in prose, per the バジリスク → basilisk precedent. The class-table form is still open (§10.2) |
+| 機械兵 | machine soldier | Unchanged from §4; recorded here because ch.7 is its first rendering |
+
+### 14.4 Items and figures of speech
+
+| Japanese | English | Note |
+|---|---|---|
+| 嘘ツキ先生 | the lying teacher | ch.7. Nacol, who lied about being cured to send Cavia home; the falling stars are read as his bouquet |
+| 切り札 | ace | `帝国の切り札` → *their ace*. Not “trump card” — 11 columns saved and no card-game register in English |
+| エチュード | etude | **No `é`** — the accented form is outside the §3.1 charset |
+| ゴミ (as an insult) | rubbish | British, consistent with the existing spelling policy |
+
+### 14.5 Tics and interjections
+
+| Japanese | English | Note |
+|---|---|---|
+| クックックッ | Ｋｕｋｕｋｕ | Cold, clipped villain laugh. Kana beats tracked, as with フハハハハ → Ｆｕｈａｈａｈａ (§11.5) |
+| ククククク | Ｋｕｋｕｋｕｋｕｋｕ | Same laugh, five beats — the length is doing work, so it is preserved |
+| フハハハハハ | Ｆｕｈａｈａｈａｈａｈａ | Five ハ. Extends §11.5's four-beat entry; the entry itself is unchanged |
+| ぐふっ | Ｇｕｆｆ | Struck-down grunt. Distinct from グッ → Ｇｕｈ and ぐわっ → Ｇｗａｈ (§11.5) |
+| へっ | Ｈｅｈ | Ridge's cocky scoff. Distinct from ふっ / フンッ → Ｈｍｐｈ |
+| ゴホッ | Ｃｏｕｇｈ | Nacol's sickbed cough. Rendered as an English word, not transliterated — `Ｇｏｈｏ` reads as a name |
+| ええい | Ｅｎｏｕｇｈ！ | Exasperated officer's bark |
+| うひょーっ | Ｗｈｏａａ！ | Delighted whoop |
+
+### 14.6 Register
+
+| Who | Register |
+|---|---|
+| Cavia (the Princess) | Warm, direct, **no contractions** — `Ｉ　ｓｈａｌｌ`, `ｌｅｔ　ｕｓ`, `Ａｒｅ　ｔｈｅｙ　ｎｏｔ`. Young and impulsive, not stiff. One deliberate exception, see `FLAGS.md` |
+| Fei | Gentle but firm; light contractions. Speaks plainly about the forest and formally to Phyllis |
+| Lady Phyllis | Formal, warm, maternal, no contractions |
+| Nacol | Frail and deferential — `Ｌａｄｙ　Ｃａｖｉａ`, `Ｙｏｕ　ｍｕｓｔ　ｎｏｔ`. Never contracts, never commands except to send her home |
+| The Black Knights commander (ch.7) | Cold and mocking; `Ｋｕｋｕｋｕ`, calls people rubbish. No contractions — the flatness is the menace |
+| Anselmo-type Imperial officers (ch.7) | Blustering and superior; `Ｆｕｈａｈａｈａｈａｈａ`, rhetorical questions |
+
+---
+
 ## 13. Open questions (continued from §10)
 
 12. **`ウィザード` vs `魔導師`.** §11.4 fixed 魔導師 → *wizard* (lowercase, prose, for Guilford);
@@ -334,3 +406,14 @@ unnamed sorceress tests the party's mage and grants the “Ｂｏｏｋ　ｏｆ
     out to be the class, revisit `pending/chunk_043.txt`.
 13. **The ch.33 sorceress is unnamed.** No name anywhere in the chunk. If a later chunk names her,
     re-check her register.
+14. **`キャビア` — Cavia or Caviar?** The kana are exactly the loanword for caviar, so the pun may
+    be deliberate; but the game treats it as an ordinary royal name and the fish-roe reading is
+    unusable in English. Rendered *Cavia*. Revisit only if a chunk plays on the food.
+15. **`ナコール` — Nacol, Nakor or Nacoll?** No in-game romanisation found. *Nacol* chosen for width
+    (5 columns, fits `Ｌａｄｙ　Ｃａｖｉａ`-length lines beside it).
+16. **`ティータ` is a hapax.** One occurrence in `battle_dump.txt`, none in `script_dump.txt`.
+    Not a typo for ティミー: in ch.5 line 10 Fei is *surprised* by Timmy's arrival, so she cannot
+    have been calling her in line 1. Plausibly Fei's beast, since Fei is a 獣使い, or a cut
+    character. Rendered *Tita* pending an in-game look.
+17. **`オーク` capitalisation.** Resolved to lowercase *orc* for prose (§14.3), but the class-name
+    table (§10.2) may need `Ｏｒｃ`. Settle both at once.
